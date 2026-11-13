@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>FIG64 — 极简暗色图片库</title>
+  <meta name="description" content="FIG64 极简暗色图片画廊">
+  <style>
+    :root{color-scheme:dark;--bg:#0b0b0d;--panel:#141417;--line:#29292f;--muted:#92929d;--text:#f4f4f5;--accent:#d7ff64}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button{font:inherit;cursor:pointer}.wrap{max-width:1440px;margin:auto;padding:0 34px}
+    header{height:78px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+    .brand{font-size:23px;font-weight:850;letter-spacing:.16em}.brand span{color:var(--accent)}.nav{display:flex;align-items:center;gap:25px;color:#b8b8c0;font-size:13px}
+    .nav a{color:inherit;text-decoration:none}.nav a:hover{color:white}.admin{border:1px solid #45454d;background:#17171b;color:#eee;border-radius:999px;padding:10px 16px;font-size:12px}
+    .hero{padding:76px 0 42px;display:flex;align-items:end;justify-content:space-between;gap:24px}.eyebrow{color:var(--accent);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+    h1{font-size:clamp(42px,7vw,88px);letter-spacing:-.065em;line-height:.98;margin:18px 0 16px;font-weight:750}.intro{color:var(--muted);font-size:14px;line-height:1.8;max-width:480px}
+    .hero-side{color:#777780;font-size:12px;line-height:1.9;text-align:right;padding-bottom:8px}.toolbar{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-top:1px solid var(--line);gap:16px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;color:#aaaab3;padding:8px 14px;border-radius:999px;font-size:12px}.filter.active,.filter:hover{background:var(--accent);border-color:var(--accent);color:#111}
+    .count{color:#777780;font-size:12px}.gallery{columns:4 240px;column-gap:14px;padding-bottom:80px}.tile{position:relative;break-inside:avoid;margin:0 0 14px;border-radius:9px;overflow:hidden;background:#17171b;cursor:zoom-in}.tile img{display:block;width:100%;height:auto;min-height:150px;object-fit:cover;transition:transform .5s,opacity .3s}.tile:hover img{transform:scale(1.035);opacity:.88}.tile:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.62));opacity:0;transition:opacity .25s}.tile:hover:after{opacity:1}.caption{position:absolute;z-index:1;left:15px;bottom:13px;font-size:12px;opacity:0;transition:opacity .25s}.tile:hover .caption{opacity:1}
+    footer{border-top:1px solid var(--line);padding:25px 0 35px;color:#696972;font-size:11px;display:flex;justify-content:space-between}
+    .modal,.panel-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:5;align-items:center;justify-content:center;padding:24px}.modal.open,.panel-backdrop.open{display:flex}.modal img{max-width:min(92vw,1200px);max-height:86vh;object-fit:contain;border-radius:5px}.close{position:absolute;top:22px;right:25px;border:1px solid #555;background:#17171b;color:white;border-radius:50%;width:42px;height:42px;font-size:22px}
+    .panel{width:min(460px,100%);background:#151519;border:1px solid #34343c;border-radius:16px;padding:25px}.panel h2{margin:0 0 8px}.panel p{color:var(--muted);font-size:13px;line-height:1.7}.panel input{width:100%;margin:14px 0;padding:12px;background:#0b0b0d;border:1px solid #383840;color:white;border-radius:8px}.panel .note{font-size:11px;color:#a6a6af}.panel-actions{display:flex;gap:10px}.primary{background:var(--accent);color:#111;border:0;border-radius:8px;padding:11px 16px;font-weight:700}.secondary{background:transparent;color:#ddd;border:1px solid #444;border-radius:8px;padding:11px 16px}
+    @media(max-width:700px){.wrap{padding:0 18px}header{height:66px}.nav{gap:12px}.nav a{display:none}.hero{padding:54px 0 32px;display:block}.hero-side{text-align:left;margin-top:22px}.toolbar{align-items:flex-start;flex-direction:column}.gallery{columns:2 145px;column-gap:9px}.tile{margin-bottom:9px}footer{gap:12px;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">FIG<span>64</span></div>
+      <nav class="nav"><a href="#gallery">探索</a><a href="#about">关于</a><button class="admin" id="openAdmin">管理入口 ↗</button></nav>
+    </header>
+    <section class="hero" id="about">
+      <div><div class="eyebrow">A CURATED IMAGE SPACE</div><h1>See beyond<br>the frame<span style="color:var(--accent)">.</span></h1><div class="intro">一个安静、克制的视觉收藏空间。<br>收集灵感，保存瞬间，让每一张图片都有自己的位置。</div></div>
+      <div class="hero-side">FIG64 / VISUAL ARCHIVE<br>EST. 2026<br>SCROLL TO EXPLORE ↓</div>
+    </section>
+    <section class="toolbar" id="gallery">
+      <div class="filters"><button class="filter active" data-filter="all">全部</button><button class="filter" data-filter="nature">自然</button><button class="filter" data-filter="architecture">建筑</button><button class="filter" data-filter="portrait">人像</button><button class="filter" data-filter="abstract">抽象</button></div>
+      <div class="count"><span id="visibleCount">12</span> ITEMS / DEMO GALLERY</div>
+    </section>
+    <main class="gallery" id="grid">
+      <figure class="tile" data-category="nature"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85" alt="山间湖泊"><figcaption class="caption">Quiet morning</figcaption></figure>
+      <figure class="tile" data-category="architecture"><img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=85" alt="现代建筑"><figcaption class="caption">Concrete poetry</figcaption></figure>
+      <figure class="tile" data-category="portrait"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85" alt="人像摄影"><figcaption class="caption">Soft focus</figcaption></figure>
+      <figure class="tile" data-category="nature"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=85" alt="森林"><figcaption class="caption">Into the green</figcaption></figure>
+      <figure class="tile" data-category="abstract"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=900&q=85" alt="抽象色彩"><figcaption class="caption">Color study</figcaption></figure>
+      <figure class="tile" data-category="architecture"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=85" alt="白色建筑"><figcaption class="caption">Pure geometry</figcaption></figure>
+      <figure class="tile" data-category="nature"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="山野风景"><figcaption class="caption">Open air</figcaption></figure>
+      <figure class="tile" data-category="portrait"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85" alt="人物肖像"><figcaption class="caption">Character</figcaption></figure>
+      <figure class="tile" data-category="abstract"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=900&q=85" alt="抽象纹理"><figcaption class="caption">Fluid forms</figcaption></figure>
+      <figure class="tile" data-category="architecture"><img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=85" alt="建筑细节"><figcaption class="caption">Urban lines</figcaption></figure>
+      <figure class="tile" data-category="nature"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85" alt="湖光山色"><figcaption class="caption">Still waters</figcaption></figure>
+      <figure class="tile" data-category="abstract"><img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?auto=format&fit=crop&w=900&q=85" alt="艺术抽象"><figcaption class="caption">Afterimage</figcaption></figure>
+    </main>
+    <footer><span>© 2026 FIG64 — VISUAL ARCHIVE</span><span>MADE FOR THE LOVE OF IMAGES.</span></footer>
+  </div>
+  <div class="modal" id="viewer"><button class="close" id="closeViewer" aria-label="关闭">×</button><img id="viewerImage" alt="图片预览"></div>
+  <div class="panel-backdrop" id="adminPanel"><section class="panel"><button class="close" id="closeAdmin" aria-label="关闭">×</button><div class="eyebrow">PRIVATE AREA</div><h2>管理入口</h2><p>这是第一阶段的界面预览。正式后台登录、云端上传和删除功能需要下一阶段连接 Supabase 后启用。</p><label for="demoUpload">本地预览上传（不会保存到网站）</label><input id="demoUpload" type="file" accept="image/*"><p class="note">选择图片后可在此设备预览；刷新页面后预览会消失。请勿在这里输入真实密码。</p><div class="panel-actions"><button class="primary" id="previewBtn">预览图片</button><button class="secondary" id="closeAdmin2">关闭</button></div></section></div>
+  <script>
+    const filters=[...document.querySelectorAll('.filter')], tiles=[...document.querySelectorAll('.tile')];
+    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('active'));btn.classList.add('active');let f=btn.dataset.filter,n=0;tiles.forEach(t=>{let show=f==='all'||t.dataset.category===f;t.style.display=show?'':'none';if(show)n++});document.getElementById('visibleCount').textContent=n}));
+    const viewer=document.getElementById('viewer'),viewerImage=document.getElementById('viewerImage');
+    tiles.forEach(t=>t.addEventListener('click',()=>{viewerImage.src=t.querySelector('img').src;viewer.classList.add('open')}));
+    document.getElementById('closeViewer').onclick=()=>viewer.classList.remove('open');viewer.addEventListener('click',e=>{if(e.target===viewer)viewer.classList.remove('open')});
+    const panel=document.getElementById('adminPanel');document.getElementById('openAdmin').onclick=()=>panel.classList.add('open');
+    ['closeAdmin','closeAdmin2'].forEach(id=>document.getElementById(id).onclick=()=>panel.classList.remove('open'));
+    document.getElementById('previewBtn').onclick=()=>{const f=document.getElementById('demoUpload').files[0];if(!f){alert('请先选择一张图片');return}const url=URL.createObjectURL(f);viewerImage.src=url;viewer.classList.remove('open');panel.classList.remove('open');viewer.classList.add('open')};
+  </script>
+</body>
+</html>
